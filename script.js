@@ -10,8 +10,10 @@
  * Update the output text as a user types in the textarea
  * HINT: Use the onkeydown function inside HTML
  */
-function updateText(){
+updateText = () => {
   // CODE GOES HERE
+  let myText = document.getElementById('text-input').value;
+  document.getElementById('text-output').innerText = myText;
 }
 
 /**
@@ -21,14 +23,18 @@ function updateText(){
  * HINT: Use the classList property
  * HINT: Toggle .active class for the button
  */
-function makeBold(elem){
+makeBold = (elem) => {
   //CODE GOES HERE
+  elem.classList.toggle('active');
+  document.getElementById('text-output').classList.toggle('bold');
 }
 
 /**
  * Toggle the italic class for the output text
  */
-function makeItalic(elem){
+makeItalic = (elem) => {
+  elem.classList.toggle('active');
+  document.getElementById('text-output').classList.toggle('italic');
 }
 
 /**
@@ -37,8 +43,13 @@ function makeItalic(elem){
  * HINT: Use the classList property
  * HINT: Use contains, remove, and add functions
  */
-function makeUnderline(elem){
+makeUnderline = (elem) => {
     //CODE GOES HERE
+  elem.classList.toggle('active');
+
+  document.getElementById('text-output').classList.contains('underline') ?
+  document.getElementById('text-output').classList.remove('underline') : 
+  document.getElementById('text-output').classList.add('underline');
 }
 
 /**
@@ -47,6 +58,22 @@ function makeUnderline(elem){
  * HINT: Use the style property of the element
  * HINT: Make sure to untoggle the active state for all other align buttons
  */
-function alignText(elem, alignType){
+alignText = (elem, alignType) => {
   // CODE GOES HERE
+  elem.classList.toggle('active');
+  document.getElementById('text-output').style.textAlign = alignType;
+
+  //let btnList = document.getElementsByClassName('align');    //HTMLCollectiion
+  /*
+  Array.from(btnList).forEach(el => el.classList.remove('active'));
+  OR 
+  for (let el of btnList) {
+  el.classList.remove('active');
+  } 
+  */
+
+  let btnList = document.querySelectorAll('align');
+  btnList.forEach(el => el.classList.remove('active'));
+
+  elem.classList.add('active');
 }
